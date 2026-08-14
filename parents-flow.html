@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>SifuTutor Onboarding - Langkah Demi Langkah</title>
+  <link rel="icon" type="image/png" href="https://ugc.production.linktr.ee/2ae56e42-0043-4140-a7bf-6f96f276b4fc_LOGO-ONLY.png?io=true&size=avatar-v3_0">
+  <link rel="apple-touch-icon" href="https://ugc.production.linktr.ee/2ae56e42-0043-4140-a7bf-6f96f276b4fc_LOGO-ONLY.png?io=true&size=avatar-v3_0">
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Portal onboarding langkah demi langkah untuk ibu bapa SifuTutor. Selesaikan pendaftaran kelas anak anda di sini.">
+  <meta property="og:title" content="SifuTutor Onboarding - Langkah Demi Langkah">
+  <meta property="og:description" content="Portal onboarding langkah demi langkah untuk ibu bapa SifuTutor. Selesaikan pendaftaran kelas anak anda di sini.">
+  <meta property="og:image" content="https://sifututor-parentshub.netlify.app/app_launch_poster.jpg">
+  <meta property="og:type" content="website">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    /* ==========================================================================
+       DESIGN SYSTEM & VARIABLES
+       ========================================================================== */
+    :root {
+      --primary: #00aef0;          /* Bright Cyan Blue */
+      --primary-hover: #008ec4;
+      --secondary: #2a4ebf;        /* Royal Blue */
+      --accent: #ff4b13;           /* Brand Orange */
+      --success: #25d366;          /* Success Green */
+      
+      --bg-dark: #f0f4fa;          /* Soft ice blue background */
+      --text-main: #071535;        /* Deep Royal Navy for high readability */
+      --text-muted: #536796;       /* Soft navy-grey for description */
+      
+      --glass-bg: rgba(255, 255, 255, 0.75); /* Clean white frosted glass */
+      --glass-border: rgba(0, 174, 240, 0.15); /* Light blue border */
+      --glass-shadow: 0 12px 35px 0 rgba(7, 24, 73, 0.08); /* Soft subtle shadow */
+      
+      --font-title: 'Outfit', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: #f5f8fc;
+      background-image: 
+        radial-gradient(rgba(0, 174, 240, 0.05) 1.5px, transparent 1.5px),
+        radial-gradient(rgba(255, 75, 19, 0.03) 1.5px, transparent 1.5px),
+        linear-gradient(135deg, #f5f8fc 0%, #e3ecf7 100%);
+      background-size: 24px 24px, 24px 24px, 100% 100%;
+      background-position: 0 0, 12px 12px, 0 0;
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      overflow-x: hidden;
+      position: relative;
+      line-height: 1.5;
+      padding: 24px 16px 48px 16px;
+    }
+
+    /* Background glows */
+    .bg-glow {
+      position: fixed;
+      width: 450px;
+      height: 450px;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.25;
+      z-index: -1;
+      pointer-events: none;
+    }
+    .bg-glow-1 { background-color: rgba(0, 174, 240, 0.2); top: -10%; left: -10%; }
+    .bg-glow-2 { background-color: rgba(255, 75, 19, 0.15); bottom: -10%; right: -10%; }
+
+    .container {
+      width: 100%;
+      max-width: 820px; /* Lebarkan portal onboarding untuk desktop */
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* Top bar */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .lang-switcher {
+      display: flex;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 2px;
+      gap: 2px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 4px 12px rgba(7, 24, 73, 0.04);
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 18px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .lang-btn.active {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #ffffff; /* Contrast text against blue gradient button */
+    }
+
+    .icon-btn {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      color: var(--text-main);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 12px rgba(7, 24, 73, 0.04);
+    }
+
+    /* Header */
+    .profile-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    .logo-container {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      margin-bottom: 20px;
+      animation: logo-float 6s infinite alternate ease-in-out;
+      will-change: transform;
+    }
+
+    .logo-img {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 3px solid rgba(255, 255, 255, 0.15);
+      background: #ffffff;
+      padding: 8px;
+      box-shadow: 0 12px 30px rgba(7, 24, 73, 0.15);
+      object-fit: contain;
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      animation: logo-glow 3s infinite ease-in-out;
+    }
+
+    .logo-ring {
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--accent), var(--secondary));
+      z-index: 1;
+      opacity: 0.85;
+      animation: morph-rotate-gradient 10s infinite linear;
+      box-shadow: 0 8px 24px rgba(7, 24, 73, 0.12);
+    }
+
+    .logo-container:hover .logo-img {
+      transform: scale(1.08) rotate(5deg);
+    }
+
+    /* Keyframes for Logo Animations */
+    @keyframes logo-float {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-10px); }
+    }
+
+    @keyframes morph-rotate-gradient {
+      0% {
+        transform: rotate(0deg) translate(0, 0) scale(1);
+        border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
+      }
+      25% {
+        transform: rotate(90deg) translate(-3px, 2px) scale(1.02);
+        border-radius: 40% 60% 45% 55% / 48% 52% 45% 55%;
+      }
+      50% {
+        transform: rotate(180deg) translate(2px, -3px) scale(0.98);
+        border-radius: 55% 45% 60% 40% / 55% 45% 58% 42%;
+      }
+      75% {
+        transform: rotate(270deg) translate(-2px, -1px) scale(1.01);
+        border-radius: 45% 55% 40% 60% / 42% 58% 42% 58%;
+      }
+      100% {
+        transform: rotate(360deg) translate(0, 0) scale(1);
+        border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
+      }
+    }
+
+    @keyframes logo-glow {
+      0%, 100% { box-shadow: 0 0 12px rgba(0, 174, 240, 0.25), 0 12px 30px rgba(7, 24, 73, 0.15); }
+      50% { box-shadow: 0 0 28px rgba(0, 174, 240, 0.5), 0 12px 30px rgba(7, 24, 73, 0.15); }
+    }
+
+    .title {
+      font-family: var(--font-title);
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      max-width: 500px;
+      line-height: 1.5;
+    }
+
+    /* Onboarding Steps Checklist Container */
+    .steps-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* Step Card Base */
+    .step-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: var(--glass-shadow);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      position: relative;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Visual Connection Line */
+    .step-card:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      bottom: -22px;
+      left: 36px;
+      width: 2px;
+      height: 22px;
+      background: rgba(7, 21, 53, 0.1);
+      z-index: 1;
+      transition: background 0.4s ease;
+    }
+
+    .step-card.completed:not(:last-child)::after {
+      background: var(--success);
+    }
+
+    /* Lock overlay for inactive states */
+    .step-card.locked {
+      opacity: 0.6;
+      pointer-events: none;
+      filter: grayscale(0.9);
+      background: rgba(255, 255, 255, 0.35);
+    }
+
+    .step-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    /* Step Numbers & Checkmarks */
+    .step-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-title);
+      font-weight: 700;
+      font-size: 0.95rem;
+      flex-shrink: 0;
+      z-index: 2;
+      transition: all 0.3s ease;
+    }
+
+    .step-card.locked .step-badge {
+      background: rgba(7, 21, 53, 0.1);
+      color: var(--text-muted);
+      border: 1px solid transparent;
+    }
+
+    .step-card.active .step-badge {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #ffffff;
+      box-shadow: 0 0 15px rgba(0, 174, 240, 0.4);
+    }
+
+    .step-card.completed .step-badge {
+      background: var(--success);
+      color: #000000;
+      box-shadow: 0 0 15px rgba(37, 211, 102, 0.3);
+    }
+
+    .step-title-block {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .step-req-tag {
+      align-self: flex-start;
+      font-size: 9px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .step-req-tag.required {
+      background: rgba(255, 75, 19, 0.15);
+      border: 1px solid rgba(255, 75, 19, 0.4);
+      color: #ff6a3c;
+    }
+
+    .step-req-tag.completed-tag {
+      background: rgba(37, 211, 102, 0.15);
+      border: 1px solid rgba(37, 211, 102, 0.4);
+      color: var(--success);
+    }
+
+    .step-title {
+      font-family: var(--font-title);
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    .step-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+      margin-bottom: 16px;
+      padding-left: 2px;
+    }
+
+    /* Buttons inside Step Cards */
+    .step-action-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-family: var(--font-title);
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      border: none;
+    }
+
+    .btn-step1 {
+      background: linear-gradient(135deg, var(--accent), #ff7e15);
+      color: #ffffff;
+      box-shadow: 0 4px 15px rgba(255, 75, 19, 0.2);
+    }
+
+    .btn-step1:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(255, 75, 19, 0.35);
+    }
+
+    .btn-step2 {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #ffffff;
+      box-shadow: 0 4px 15px rgba(0, 174, 240, 0.2);
+    }
+
+    .btn-step2:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(0, 174, 240, 0.35);
+    }
+
+    .btn-step3 {
+      background: rgba(7, 21, 53, 0.04);
+      border: 1px solid rgba(7, 21, 53, 0.12);
+      color: var(--text-main);
+    }
+
+    .btn-step3:hover {
+      background: rgba(7, 21, 53, 0.08);
+      border-color: rgba(7, 21, 53, 0.2);
+    }
+
+    /* Success Card / Celebration overlay */
+    .success-card {
+      background: linear-gradient(135deg, rgba(37, 211, 102, 0.1), rgba(0, 174, 240, 0.05));
+      border: 1.5px dashed var(--success);
+      border-radius: 20px;
+      padding: 24px;
+      text-align: center;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      box-shadow: var(--glass-shadow);
+      animation: pop-up 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @keyframes pop-up {
+      0% { transform: scale(0.9); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .success-icon-wrapper {
+      width: 54px;
+      height: 54px;
+      background: var(--success);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #000000;
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+      box-shadow: 0 0 20px rgba(37, 211, 102, 0.4);
+    }
+
+    .success-card h3 {
+      font-family: var(--font-title);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .success-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      max-width: 320px;
+      line-height: 1.5;
+    }
+
+    /* FAQ Link Section */
+    .support-footer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .wa-help-btn {
+      background: rgba(37, 211, 102, 0.08);
+      border: 1px solid rgba(37, 211, 102, 0.25);
+      border-radius: 14px;
+      padding: 12px 24px;
+      color: #25d366;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.25s ease;
+    }
+
+    .wa-help-btn:hover {
+      background: #25d366;
+      color: #000000;
+      border-color: transparent;
+      transform: translateY(-1px);
+    }
+
+    .copyright {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    /* Fallback Manual App Link list in Step 2 */
+    .app-fallback {
+      margin-top: 14px;
+      border-top: 1px dashed rgba(7, 24, 73, 0.08);
+      padding-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .app-fallback-title {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin-bottom: 4px;
+    }
+
+    .app-fallback-links {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .fallback-store-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 10px;
+      background: rgba(7, 21, 53, 0.03);
+      border: 1px solid rgba(0, 174, 240, 0.18);
+      border-radius: 10px;
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 600;
+      transition: all 0.25s ease;
+      user-select: none;
+      -webkit-user-select: none;
+      box-shadow: 0 2px 6px rgba(7, 24, 73, 0.02);
+    }
+
+    .fallback-store-btn:hover {
+      background: rgba(0, 174, 240, 0.06);
+      border-color: var(--primary);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 174, 240, 0.1);
+    }
+
+    /* Video collapsible wrapper in Step 3 */
+    .video-wrapper {
+      margin-top: 12px;
+      border-radius: 12px;
+      overflow: hidden;
+      display: none;
+      aspect-ratio: 16/9;
+      border: 1px solid rgba(7, 24, 73, 0.12);
+      box-shadow: 0 8px 24px rgba(7, 24, 73, 0.06);
+    }
+
+    /* Verification Rules Box inside Step 3 */
+    .verify-rules-box {
+      margin-top: 16px;
+      padding: 16px;
+      background: rgba(42, 78, 191, 0.05); /* Light blue tint */
+      border: 1px solid rgba(42, 78, 191, 0.15);
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* App Benefits Box inside Step 2 */
+    .app-benefits-box {
+      margin-top: 14px;
+      padding: 14px;
+      background: rgba(0, 174, 240, 0.05); /* Light cyan tint */
+      border: 1px solid rgba(0, 174, 240, 0.15);
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-align: left;
+    }
+
+    .app-benefits-title {
+      font-family: var(--font-title);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .app-benefits-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .app-benefits-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .app-benefits-list li i {
+      color: var(--primary);
+      font-size: 0.85rem;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .verify-rules-title {
+      font-family: var(--font-title);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--secondary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .verify-rules-main {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-main);
+      line-height: 1.4;
+    }
+
+    .verify-rules-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .verify-rules-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .verify-rules-list li i {
+      color: var(--primary);
+      font-size: 0.85rem;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .video-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      body {
+        padding: 16px 12px 36px 12px;
+      }
+      .title {
+        font-size: 1.45rem;
+      }
+      .step-card {
+        padding: 18px;
+      }
+      /* Mobile Promo Modal overrides */
+      .modal-content {
+        width: 85%;
+      }
+      .modal-close {
+        top: -42px;
+        width: 32px;
+        height: 32px;
+        font-size: 0.95rem;
+      }
+    }
+
+    /* ==========================================================================
+       STAGGERED LOAD-IN ANIMATIONS
+       ========================================================================== */
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .fade-in-up.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.25s; }
+    .delay-3 { transition-delay: 0.4s; }
+
+    /* ==========================================================================
+       PREMIUM SPLASH SCREEN LOADER
+       ========================================================================== */
+    #splash-screen {
+      position: fixed;
+      inset: 0;
+      background-color: var(--bg-dark);
+      background-image: linear-gradient(135deg, #f5f8fc 0%, #e3ecf7 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.5s ease;
+    }
+
+    #splash-screen.fade-out {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .splash-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .splash-logo-container {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      animation: logo-float 4s infinite alternate ease-in-out;
+    }
+
+    .splash-logo {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      animation: pulse-logo 1.8s infinite ease-in-out;
+    }
+
+    .splash-loader {
+      width: 50px;
+      height: 4px;
+      background: rgba(7, 24, 73, 0.08);
+      border-radius: 3px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .splash-loader::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 50%;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      border-radius: 3px;
+      animation: loading-bar 1.5s infinite ease-in-out;
+    }
+
+    @keyframes pulse-logo {
+      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 0 rgba(0, 174, 240, 0)); }
+      50% { transform: scale(1.06); filter: drop-shadow(0 0 20px rgba(0, 174, 240, 0.4)); }
+    }
+
+    @keyframes loading-bar {
+      0% { left: -50%; }
+      100% { left: 100%; }
+    }
+
+    /* ==========================================================================
+       INTERACTIVE PROMO MODAL (POPUP POSTER)
+       ========================================================================== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(12, 28, 63, 0.55); /* Soft dark overlay for light mode contrast */
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999; /* Below splash screen (9999) but above everything else (99) */
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-content {
+      position: relative;
+      width: 90%;
+      max-width: 380px; /* Standard poster aspect ratio width */
+      background: transparent;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transform: scale(0.9) translateY(20px);
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .modal-overlay.active .modal-content {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: -48px;
+      right: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(12, 28, 63, 0.1);
+      color: #0c1c3f;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 15px rgba(12, 28, 63, 0.1);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 1001;
+    }
+
+    .modal-close:hover {
+      background: var(--accent); /* Brand orange close highlight */
+      border-color: var(--accent);
+      color: #ffffff;
+      transform: rotate(90deg);
+    }
+
+    .modal-body {
+      width: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(12, 28, 63, 0.15), 0 0 30px rgba(0, 174, 240, 0.1);
+      border: 1px solid rgba(12, 28, 63, 0.08);
+      display: flex;
+      background: #ffffff;
+    }
+
+    .promo-poster {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      display: block;
+    }
+    /* Floating WhatsApp Button and Tooltip */
+    .floating-wa-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 999;
+      pointer-events: none; /* Let clicks pass through except on interactive parts */
+    }
+
+    .floating-wa-btn {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background-color: #25d366;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4), 0 0 0 0 rgba(37, 211, 102, 0.4);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      pointer-events: auto;
+      animation: wa-pulse 2s infinite;
+    }
+
+    .floating-wa-btn:hover {
+      background-color: #20ba5a;
+      transform: scale(1.08) rotate(10deg);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+    }
+
+    .wa-tooltip {
+      background: #ffffff;
+      border: 1px solid rgba(37, 211, 102, 0.3);
+      padding: 8px 14px;
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(7, 24, 73, 0.08);
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #071535;
+      white-space: nowrap;
+      pointer-events: auto;
+      animation: tooltip-bounce 4s infinite ease-in-out;
+      position: relative;
+    }
+
+    .wa-tooltip::after {
+      content: '';
+      position: absolute;
+      right: -6px;
+      top: 50%;
+      transform: translateY(-50%) rotate(45deg);
+      width: 8px;
+      height: 8px;
+      background: #ffffff;
+      border-right: 1px solid rgba(37, 211, 102, 0.3);
+      border-top: 1px solid rgba(37, 211, 102, 0.3);
+    }
+
+    @keyframes wa-pulse {
+      0% {
+        box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4), 0 0 0 0 rgba(37, 211, 102, 0.4);
+      }
+      70% {
+        box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4), 0 0 0 12px rgba(37, 211, 102, 0);
+      }
+      100% {
+        box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4), 0 0 0 0 rgba(37, 211, 102, 0);
+      }
+    }
+
+    @keyframes tooltip-bounce {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(-5px); }
+    }
+
+    .agreement-tab-note {
+      font-size: 0.72rem;
+      color: #ff4b13; /* Highlight brand orange */
+      font-weight: 700;
+      margin-top: 10px;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      line-height: 1.35;
+    }
+    
+    .agreement-tab-note i {
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Interactive Promo/Ad Poster Modal -->
+  <div id="promo-modal" class="modal-overlay">
+    <div class="modal-content">
+      <button id="modal-close-btn" class="modal-close" aria-label="Close Announcement">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="modal-body">
+        <img src="apps_verify.png" alt="SifuTutor Special Promotion" class="promo-poster">
+      </div>
+    </div>
+  </div>  <!-- Premium Splash Loader overlay -->
+  <div id="splash-screen">
+    <div class="splash-content">
+      <div class="splash-logo-container">
+        <img class="splash-logo" src="https://ugc.production.linktr.ee/2ae56e42-0043-4140-a7bf-6f96f276b4fc_LOGO-ONLY.png?io=true&size=avatar-v3_0" alt="SifuTutor Logo">
+      </div>
+      <div class="splash-loader"></div>
+    </div>
+  </div>
+
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+
+  <main class="container">
+    
+    <!-- Top Bar -->
+    <div class="top-bar fade-in-up delay-1">
+      <div class="lang-switcher">
+        <button id="lang-en-btn" class="lang-btn active" data-lang="en">EN</button>
+        <button id="lang-ms-btn" class="lang-btn" data-lang="ms">BM</button>
+      </div>
+      <button id="share-btn" class="icon-btn">
+        <i class="fa-regular fa-share-from-square"></i> <span id="share-txt" data-translate="shareText">Kongsi</span>
+      </button>
+    </div>
+
+    <!-- Header Section -->
+    <header class="profile-header fade-in-up delay-2">
+      <div class="logo-container">
+        <div class="logo-ring"></div>
+        <img class="logo-img" src="https://ugc.production.linktr.ee/2ae56e42-0043-4140-a7bf-6f96f276b4fc_LOGO-ONLY.png?io=true&size=avatar-v3_0" alt="SifuTutor Logo">
+      </div>
+      <h1 class="title" data-translate="portalTitle">Onboarding Ibu Bapa</h1>
+      <p class="subtitle" data-translate="portalDesc">Sila selesaikan langkah mudah di bawah secara tertib sebelum kelas pertama anak anda bermula.</p>
+    </header>
+
+    <!-- Onboarding Steps -->
+    <div class="steps-container fade-in-up delay-3">
+      
+      <!-- STEP 1: AGREEMENT (MANDATORY) -->
+      <div id="step-1" class="step-card active">
+        <div class="step-header">
+          <div class="step-badge">
+            <span class="step-num">1</span>
+          </div>
+          <div class="step-title-block">
+            <span id="badge-s1" class="step-req-tag required" data-translate="badgeRequired">Sila Selesaikan Dahulu</span>
+            <h3 class="step-title" data-translate="s1Title">Isi Perjanjian Perkhidmatan</h3>
+          </div>
+        </div>
+        <p class="step-desc" data-translate="s1Desc">Sebagai syarat wajib permulaan kelas, anda perlu membaca dan bersetuju dengan Perjanjian Perkhidmatan Pelanggan SifuTutor.</p>
+        
+        <a id="btn-agreement" href="https://sifututor.my/customer-service-agreement/" target="_blank" class="step-action-btn btn-step1">
+          <i class="fa-solid fa-file-signature"></i> <span data-translate="s1Btn">Isi Perjanjian Sekarang</span>
+        </a>
+        <p class="agreement-tab-note">
+          <i class="fa-solid fa-circle-exclamation"></i>
+          <span data-translate="agreementTabNote">Nota: Borang akan dibuka di tab baharu. Sila KEMBALI ke halaman ini setelah selesai untuk meneruskan Langkah 2 (Download App).</span>
+        </p>
+      </div>
+
+      <!-- STEP 2: APP DOWNLOAD -->
+      <div id="step-2" class="step-card locked">
+        <div class="step-header">
+          <div class="step-badge">
+            <span class="step-num">2</span>
+          </div>
+          <div class="step-title-block">
+            <span id="badge-s2" class="step-req-tag" data-translate="badgeLocked">Belum Dibuka</span>
+            <h3 class="step-title" data-translate="s2Title">Muat Turun Aplikasi Ibu Bapa</h3>
+          </div>
+        </div>
+        <p class="step-desc" data-translate="s2Desc">Muat turun aplikasi untuk menyemak jadual, maklumat tutor, laporan pelajar dan membuat pembayaran bulanan dengan pantas.</p>
+
+        <!-- App Benefits Box -->
+        <div class="app-benefits-box">
+          <h4 class="app-benefits-title">
+            <i class="fa-solid fa-circle-question"></i> <span data-translate="s2WhyDownload">Kenapa Wajib Muat Turun Aplikasi SifuTutor?</span>
+          </h4>
+          <ul class="app-benefits-list">
+            <li>
+              <i class="fa-solid fa-shield-heart"></i>
+              <span data-translate="s2Benefit1"><strong>Sahkan Kehadiran Kelas (Verify):</strong> Wajib untuk pengesahan jadual bulanan bagi kelancaran pembayaran tutor.</span>
+            </li>
+            <li>
+              <i class="fa-solid fa-receipt"></i>
+              <span data-translate="s2Benefit2"><strong>Urus Bayaran & Invois:</strong> Terima invois terus dalam app dan buat bayaran secara atas talian dengan selamat.</span>
+            </li>
+            <li>
+              <i class="fa-solid fa-chart-line"></i>
+              <span data-translate="s2Benefit3"><strong>Laporan Pelajar:</strong> Pantau laporan perkembangan akademik anak anda yang disediakan oleh tutor setiap bulan.</span>
+            </li>
+          </ul>
+        </div>
+        
+        <a id="btn-download" href="#" target="_blank" class="step-action-btn btn-step2">
+          <i class="fa-solid fa-cloud-arrow-down"></i> <span id="btn-download-txt" data-translate="s2Btn">Muat Turun Aplikasi</span>
+        </a>
+
+        <!-- Fallback links inside card -->
+        <div class="app-fallback">
+          <p class="app-fallback-title" data-translate="s2Manual">Atau pilih jenis peranti secara manual:</p>
+          <div class="app-fallback-links">
+            <a id="store-link-ios" href="https://apps.apple.com/my/app/sifututor-tutors-a-tap-away/id6615067210?l=ms" target="_blank" class="fallback-store-btn">
+              <i class="fa-brands fa-apple"></i> iOS / iPhone
+            </a>
+            <a id="store-link-android" href="https://play.google.com/store/apps/details?id=com.sifuparent&pcampaignid=web_share" target="_blank" class="fallback-store-btn">
+              <i class="fa-brands fa-google-play"></i> Android
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 3: VIDEO GUIDE & ATTENDANCE -->
+      <div id="step-3" class="step-card locked">
+        <div class="step-header">
+          <div class="step-badge">
+            <span class="step-num">3</span>
+          </div>
+          <div class="step-title-block">
+            <span id="badge-s3" class="step-req-tag" data-translate="badgeLocked">Belum Dibuka</span>
+            <h3 class="step-title" data-translate="s3Title">Video Panduan Penggunaan App</h3>
+          </div>
+        </div>
+        <p class="step-desc" data-translate="s3Desc">Tonton video panduan pendek 1 minit untuk cara sahkan kelas anak anda (Verify Attendance) setiap bulan.</p>
+        
+        <button id="btn-video" class="step-action-btn btn-step3">
+          <i class="fa-solid fa-circle-play"></i> <span id="btn-video-txt" data-translate="s3Btn">Tonton Video Panduan</span>
+        </button>
+
+        <div id="video-player-container" class="video-wrapper">
+          <iframe id="video-frame" src="" title="SifuTutor App Tutorial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+      </div>
+
+      <!-- SUCCESS / CELEBRATION BLOCK -->
+      <div id="success-block" class="success-card">
+        <div class="success-icon-wrapper">
+          <i class="fa-solid fa-check"></i>
+        </div>
+        <h3 data-translate="successTitle">Semua Selesai!</h3>
+        <p data-translate="successDesc">Terima kasih kerana melengkapkan onboarding ini. Anda kini bersedia sepenuhnya untuk kelas pertama anak anda bersama SifuTutor!</p>
+      </div>
+
+    </div>
+
+
+
+    <!-- Help & Support -->
+    <div class="support-footer">
+      <p class="copyright">&copy; 2026 SifuTutor. Managed by Sifu Edu & Learning Sdn Bhd.</p>
+    </div>
+
+  </main>
+
+  <!-- Floating WhatsApp Help Button with Tooltip -->
+  <div class="floating-wa-container">
+    <div class="wa-tooltip">
+      <span data-translate="waTooltipText">Ada masalah? Hubungi kami!</span>
+    </div>
+    <a id="floating-wa-link" href="#" target="_blank" class="floating-wa-btn" aria-label="WhatsApp Support">
+      <i class="fa-brands fa-whatsapp"></i>
+    </a>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      
+      // Translations dictionaries
+      const translations = {
+        ms: {
+          shareText: "Kongsi",
+          copiedText: "Disalin!",
+          portalTitle: "Onboarding Ibu Bapa",
+          portalDesc: "Sila selesaikan langkah mudah di bawah secara tertib sebelum kelas pertama anak anda bermula.",
+          badgeRequired: "Lakukan Langkah Ini Dahulu",
+          badgeLocked: "Belum Dibuka",
+          badgeCompleted: "Selesai",
+          s1Title: "1. Isi Perjanjian Perkhidmatan",
+          s1Desc: "Sebagai syarat wajib permulaan kelas, anda perlu membaca dan bersetuju dengan Perjanjian Perkhidmatan Pelanggan SifuTutor.",
+          s1Btn: "Isi Perjanjian Sekarang",
+          s2Title: "2. Muat Turun Aplikasi Ibu Bapa",
+          s2Desc: "Muat turun aplikasi untuk menyemak jadual, maklumat tutor, laporan pelajar dan membuat pembayaran bulanan dengan pantas.",
+          s2Btn: "Muat Turun Aplikasi",
+          s2Manual: "Atau pilih jenis peranti secara manual:",
+          s3Title: "3. Video Panduan Penggunaan App",
+          s3Desc: "Tonton video panduan pendek 1 minit untuk cara sahkan kelas anak anda (Verify Attendance) setiap bulan.",
+          s3Btn: "Tonton Video Panduan",
+          s3BtnHide: "Tutup Video Panduan",
+          successTitle: "Tahniah, Semua Selesai! 🎉",
+          successDesc: "Terima kasih kerana melengkapkan pendaftaran. Anda kini bersedia sepenuhnya untuk kelas pertama anak anda!",
+          helpBtn: "Bantuan Hubungi WhatsApp",
+          waTemplate: "Selamat datang ke *Helpdesk Customer.* 😊\n\nUntuk memudahkan kami membantu, mohon kongsikan:\n* *Nama Penuh:*\n* *Ringkasan isu atau pertanyaan:*\n\nJika berkaitan, sila sertakan *screenshot* bagi memudahkan proses semakan. Terima kasih atas kerjasama tuan/puan. 🙏",
+          btnAndroid: "Muat Turun di Google Play",
+          btnIos: "Muat Turun di App Store",
+          btnDefault: "Sila Download Aplikasi",
+          verifyHeading: "Sahkan Kelas Bulan Ini",
+          verifyMain: "Pelanggan yang dihormati, sila sahkan semua kelas yang dijalankan pada bulan ini di dalam aplikasi sebelum 1 hb bulan hadapan.",
+          verifyItem1: "Setelah kelas pertama selesai, sila buat pembayaran sebaik sahaja anda menerima invois bulanan.",
+          verifyItem2: "Pembayaran diperlukan sebelum kelas boleh disahkan di dalam aplikasi.",
+          verifyItem3: "Bayaran kepada tutor bergantung pada status pembayaran invois dan pengesahan kelas.",
+          verifyItem4: "Pembayaran tepat pada masanya membantu melancarkan bayaran tutor dan kelangsungan kelas tanpa gangguan.",
+          s2WhyDownload: "Kenapa Wajib Muat Turun Aplikasi SifuTutor?",
+          s2Benefit1: "Sahkan Kehadiran Kelas (Verify): Wajib untuk pengesahan jadual bulanan bagi kelancaran pembayaran tutor.",
+          s2Benefit2: "Urus Bayaran & Invois: Terima invois terus dalam app dan buat bayaran secara atas talian dengan selamat.",
+          s2Benefit3: "Laporan Pelajar: Pantau laporan perkembangan akademik anak anda yang disediakan oleh tutor setiap bulan.",
+          waTooltipText: "Ada masalah? Hubungi kami!",
+          feedbackTitle: "Testimoni & Maklum Balas",
+          feedbackDesc: "Tonton ulasan jujur daripada ibu bapa SifuTutor",
+          agreementTabNote: "Nota: Borang dibuka di tab baru. Sila kembali ke sini untuk Langkah 2.",
+          step3PosterTitle: "Verify Class",
+          zoomPrompt: "Klik untuk besarkan panduan"
+        },
+        en: {
+          shareText: "Share",
+          copiedText: "Copied!",
+          portalTitle: "Parent Onboarding Hub",
+          portalDesc: "Please complete the simple steps below in order before your child's first tutoring session begins.",
+          badgeRequired: "Do This Step First",
+          badgeLocked: "Locked",
+          badgeCompleted: "Completed",
+          s1Title: "1. Fill Service Agreement",
+          s1Desc: "As a mandatory requirement to start classes, you must read and agree to the SifuTutor Customer Service Agreement.",
+          s1Btn: "Fill Service Agreement Now",
+          s2Title: "2. Download Parent App",
+          s2Desc: "Download our app to track class schedules, tutor info, student progress reports, and make monthly invoice payments.",
+          s2Btn: "Download Application",
+          s2Manual: "Or select your device store manually:",
+          s3Title: "3. App Tutorial Video Guide",
+          s3Desc: "Watch our quick 1-minute video guide on how to verify classes (Verify Attendance) inside the app monthly.",
+          s3Btn: "Watch Guide Video",
+          s3BtnHide: "Hide Guide Video",
+          successTitle: "All Done, Congratulations! 🎉",
+          successDesc: "Thank you for completing the onboarding. You are now fully set for your child's first SifuTutor class!",
+          helpBtn: "Contact WhatsApp Support",
+          waTemplate: "Welcome to *Helpdesk Customer.* 😊\n\nTo help us assist you better, please share:\n* *Full Name:*\n* *Summary of issue or inquiry:*\n\nIf applicable, please include a *screenshot* to facilitate the review process. Thank you for your cooperation. 🙏",
+          btnAndroid: "Download on Google Play",
+          btnIos: "Download on the App Store",
+          btnDefault: "Download App",
+          verifyHeading: "Verify This Month's Classes",
+          verifyMain: "Dear Customer, kindly verify all classes conducted this month in your app before the 1st of next month.",
+          verifyItem1: "After the first class is completed, kindly make the payment once you receive the monthly invoice.",
+          verifyItem2: "Payment is required before the class can be verified in the app.",
+          verifyItem3: "Tutor payment is dependent on the invoice payment status and class verification.",
+          verifyItem4: "Timely payment helps ensure smooth tutor payment processing and uninterrupted continuation of classes.",
+          s2WhyDownload: "Why You Must Download the SifuTutor App?",
+          s2Benefit1: "Verify Class Attendance: Mandatory to verify monthly schedules for smooth tutor payment processing.",
+          s2Benefit2: "Manage Payments & Invoices: Receive invoices directly in the app and make secure online payments.",
+          s2Benefit3: "Student Reports: Track monthly academic progress reports and feedback provided by the tutors.",
+          waTooltipText: "Facing issues? Contact us!",
+          feedbackTitle: "Parents Testimony & Reviews",
+          feedbackDesc: "Watch honest feedback from SifuTutor parents",
+          agreementTabNote: "Note: Form opens in a new tab. Please return here for Step 2.",
+          step3PosterTitle: "Verify Class",
+          zoomPrompt: "Click to zoom guide"
+        }
+      };
+
+      let currentLang = "en"; // Default to EN
+      
+      const IOS_URL = "https://apps.apple.com/my/app/sifututor-tutors-a-tap-away/id6615067210?l=ms";
+      const ANDROID_URL = "https://play.google.com/store/apps/details?id=com.sifuparent&pcampaignid=web_share";
+      const YOUTUBE_VIDEO_URL = "https://www.youtube.com/embed/eXWqLj0SPCg";
+
+      // Onboarding state flags
+      let isStep1Done = false;
+      let isStep2Done = false;
+      let isStep3Done = false;
+
+      // DOM Elements
+      const langMsBtn = document.getElementById("lang-ms-btn");
+      const langEnBtn = document.getElementById("lang-en-btn");
+      const shareBtn = document.getElementById("share-btn");
+      const shareTxt = document.getElementById("share-txt");
+      
+      const step1 = document.getElementById("step-1");
+      const step2 = document.getElementById("step-2");
+      const step3 = document.getElementById("step-3");
+      
+      const badgeS1 = document.getElementById("badge-s1");
+      const badgeS2 = document.getElementById("badge-s2");
+      const badgeS3 = document.getElementById("badge-s3");
+      
+      const btnAgreement = document.getElementById("btn-agreement");
+      const btnDownload = document.getElementById("btn-download");
+      const btnVideo = document.getElementById("btn-video");
+      const btnVideoTxt = document.getElementById("btn-video-txt");
+      
+      const videoContainer = document.getElementById("video-player-container");
+      const videoFrame = document.getElementById("video-frame");
+      const successBlock = document.getElementById("success-block");
+      const waHelpLink = document.getElementById("wa-help-link");
+      const splashScreen = document.getElementById("splash-screen");
+      const promoModal = document.getElementById("promo-modal");
+      const modalCloseBtn = document.getElementById("modal-close-btn");
+      const floatingWaLink = document.getElementById("floating-wa-link");
+
+      // OS detection
+      function getMobileOS() {
+        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+          return "iOS";
+        }
+        if (/android/i.test(userAgent)) {
+          return "Android";
+        }
+        if (/Macintosh/i.test(userAgent) && navigator.maxTouchPoints > 1) {
+          return "iOS";
+        }
+        return "Unknown";
+      }
+
+      // Update smart button text/link based on active OS and Language
+      function updateSmartBtn() {
+        const os = getMobileOS();
+        const dict = translations[currentLang];
+        
+        if (os === "iOS") {
+          btnDownload.href = IOS_URL;
+          btnDownload.innerHTML = `<i class="fa-brands fa-apple"></i> <span>${dict.btnIos}</span>`;
+        } else if (os === "Android") {
+          btnDownload.href = ANDROID_URL;
+          btnDownload.innerHTML = `<i class="fa-brands fa-google-play"></i> <span>${dict.btnAndroid}</span>`;
+        } else {
+          // If desktop, default download link takes them to manual select
+          btnDownload.href = "#store-link-ios";
+          btnDownload.innerHTML = `<i class="fa-solid fa-mobile-button"></i> <span>${dict.btnDefault}</span>`;
+          btnDownload.addEventListener("click", function(e) {
+            e.preventDefault();
+            document.getElementById("store-link-ios").scrollIntoView({ behavior: 'smooth' });
+          });
+        }
+      }
+
+      // Bilingual update logic
+      function translatePage(lang) {
+        currentLang = lang;
+        const dict = translations[lang];
+
+        document.querySelectorAll("[data-translate]").forEach(el => {
+          const key = el.getAttribute("data-translate");
+          if (dict[key]) {
+            el.textContent = dict[key];
+          }
+        });
+
+        // Handle states text translation
+        updateStateUI();
+        updateSmartBtn();
+
+        // Update WhatsApp support template
+        const waPhoneNumber = "60103170575";
+        const waUrl = `https://api.whatsapp.com/send?phone=${waPhoneNumber}&text=${encodeURIComponent(dict.waTemplate)}`;
+        if (waHelpLink) waHelpLink.href = waUrl;
+        if (floatingWaLink) floatingWaLink.href = waUrl;
+      }
+
+      function updateStateUI() {
+        const dict = translations[currentLang];
+        
+        // Update Step 1 Status
+        if (isStep1Done) {
+          badgeS1.className = "step-req-tag completed-tag";
+          badgeS1.innerHTML = `<i class="fa-solid fa-check"></i> ${dict.badgeCompleted}`;
+          step1.className = "step-card completed";
+        } else {
+          badgeS1.className = "step-req-tag required";
+          badgeS1.textContent = dict.badgeRequired;
+          step1.className = "step-card active";
+        }
+
+        // Update Step 2 Status
+        if (isStep2Done) {
+          badgeS2.className = "step-req-tag completed-tag";
+          badgeS2.innerHTML = `<i class="fa-solid fa-check"></i> ${dict.badgeCompleted}`;
+          step2.className = "step-card completed";
+        } else if (isStep1Done) {
+          badgeS2.className = "step-req-tag required";
+          badgeS2.textContent = dict.badgeRequired;
+          step2.className = "step-card active";
+        } else {
+          badgeS2.className = "step-req-tag";
+          badgeS2.textContent = dict.badgeLocked;
+          step2.className = "step-card locked";
+        }
+
+        // Update Step 3 Status
+        if (isStep3Done) {
+          badgeS3.className = "step-req-tag completed-tag";
+          badgeS3.innerHTML = `<i class="fa-solid fa-check"></i> ${dict.badgeCompleted}`;
+          step3.className = "step-card completed";
+        } else if (isStep2Done) {
+          badgeS3.className = "step-req-tag required";
+          badgeS3.textContent = dict.badgeRequired;
+          step3.className = "step-card active";
+        } else {
+          badgeS3.className = "step-req-tag";
+          badgeS3.textContent = dict.badgeLocked;
+          step3.className = "step-card locked";
+        }
+      }
+
+      // Action Listeners with state transition logic
+      
+      // Step 1: Agreement click marks step 1 completed, unlocks step 2
+      btnAgreement.addEventListener("click", function() {
+        if (!isStep1Done) {
+          isStep1Done = true;
+          updateStateUI();
+          // Scroll smoothly to Step 2
+          setTimeout(() => {
+            step2.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }, 600);
+        }
+      });
+
+      // Step 2: Download click marks step 2 completed, unlocks step 3
+      btnDownload.addEventListener("click", function() {
+        if (isStep1Done && !isStep2Done) {
+          isStep2Done = true;
+          updateStateUI();
+          // Scroll smoothly to Step 3
+          setTimeout(() => {
+            step3.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }, 600);
+        }
+      });
+
+      // Fallback store buttons also trigger Step 2 completion
+      document.getElementById("store-link-ios").addEventListener("click", completeStep2);
+      document.getElementById("store-link-android").addEventListener("click", completeStep2);
+
+      function completeStep2() {
+        if (isStep1Done && !isStep2Done) {
+          isStep2Done = true;
+          updateStateUI();
+          setTimeout(() => {
+            step3.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }, 600);
+        }
+      }
+
+      // Step 3: Video click displays the video player and triggers onboarding completion
+      btnVideo.addEventListener("click", function() {
+        if (isStep2Done) {
+          const dict = translations[currentLang];
+          if (videoContainer.style.display === "none" || !videoContainer.style.display) {
+            // Show video & start loading frame
+            videoContainer.style.display = "block";
+            videoFrame.src = YOUTUBE_VIDEO_URL;
+            btnVideoTxt.textContent = dict.s3BtnHide;
+            
+            // Mark step 3 done & reveal success onboarding block
+            if (!isStep3Done) {
+              isStep3Done = true;
+              updateStateUI();
+              
+              setTimeout(() => {
+                successBlock.style.display = "flex";
+                successBlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              }, 1200);
+            }
+          } else {
+            // Hide video
+            videoContainer.style.display = "none";
+            videoFrame.src = "";
+            btnVideoTxt.textContent = dict.s3Btn;
+          }
+        }
+      });
+
+      // Lang buttons
+      langMsBtn.addEventListener("click", () => {
+        langMsBtn.classList.add("active");
+        langEnBtn.classList.remove("active");
+        translatePage("ms");
+      });
+
+      // English translation selection
+      langEnBtn.addEventListener("click", () => {
+        langEnBtn.classList.add("active");
+        langMsBtn.classList.remove("active");
+        translatePage("en");
+      });
+
+      // Share portal link logic
+      shareBtn.addEventListener("click", function () {
+        const pageUrl = window.location.href;
+        const dict = translations[currentLang];
+
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(pageUrl)
+            .then(() => showSuccessShare(dict.copiedText))
+            .catch(err => fallbackCopy(pageUrl, dict.copiedText));
+        } else {
+          fallbackCopy(pageUrl, dict.copiedText);
+        }
+      });
+
+      function fallbackCopy(text, successMsg) {
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        try {
+          document.execCommand('copy');
+          showSuccessShare(successMsg);
+        } catch (err) {
+          console.error('Failed copy: ', err);
+        }
+        document.body.removeChild(textArea);
+      }
+
+      function showSuccessShare(msg) {
+        const origIcon = shareBtn.querySelector("i").className;
+        const origText = shareTxt.textContent;
+        
+        shareBtn.querySelector("i").className = "fa-solid fa-check";
+        shareBtn.querySelector("i").style.color = "var(--success)";
+        shareTxt.textContent = msg;
+        shareBtn.style.borderColor = "var(--success)";
+        
+        setTimeout(() => {
+          shareBtn.querySelector("i").className = origIcon;
+          shareBtn.querySelector("i").style.color = "";
+          shareTxt.textContent = origText;
+          shareBtn.style.borderColor = "var(--glass-border)";
+        }, 2000);
+      }
+
+      // --- Promo Modal Logic ---
+      function showPromoModal() {
+        // Only show once per browser session
+        if (!sessionStorage.getItem("promoShown")) {
+          setTimeout(() => {
+            if (promoModal) promoModal.classList.add("active");
+            sessionStorage.setItem("promoShown", "true");
+          }, 450); // Small visual delay after page slide-up
+        }
+      }
+
+      function closePromoModal() {
+        if (promoModal) promoModal.classList.remove("active");
+      }
+
+      if (modalCloseBtn && promoModal) {
+        modalCloseBtn.addEventListener("click", closePromoModal);
+        
+        // Also close when clicking outside the content area
+        promoModal.addEventListener("click", function(e) {
+          if (e.target === promoModal) {
+            closePromoModal();
+          }
+        });
+      }
+
+
+
+      // Initial execution
+      translatePage("en");
+
+      // Hide Splash screen after 1.2s and trigger staggered load-in
+      setTimeout(() => {
+        if (splashScreen) splashScreen.classList.add("fade-out");
+        
+        // Trigger staggered loading animations
+        setTimeout(() => {
+          document.querySelectorAll('.fade-in-up').forEach(el => {
+            el.classList.add('active');
+          });
+          
+          // Show promo modal after entrance animations
+          showPromoModal();
+        }, 150);
+      }, 1200);
+      // Flashing tab title when user is on another tab (e.g. agreement tab)
+      let titleTimer = null;
+      const originalTitle = document.title;
+      
+      document.addEventListener("visibilitychange", function() {
+        if (document.hidden) {
+          // Tab is in background, start flashing if they completed step 1 but haven't downloaded yet
+          if (isStep1Done && !isStep2Done) {
+            let isAlt = false;
+            titleTimer = setInterval(() => {
+              document.title = isAlt 
+                ? (currentLang === "en" ? "⚠️ Complete Step 2!" : "⚠️ Selesaikan Langkah 2!")
+                : originalTitle;
+              isAlt = !isAlt;
+            }, 1000);
+          }
+        } else {
+          // Tab is back in foreground, restore original title
+          if (titleTimer) {
+            clearInterval(titleTimer);
+            titleTimer = null;
+          }
+          document.title = originalTitle;
+        }
+      });
+
+    });
+  </script>
+</body>
+</html>

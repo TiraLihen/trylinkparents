@@ -1,0 +1,1630 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>SifuTutor Parents Hub 👋 - Official App Download & Resources</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Manage classes, payments & learning progress with ease ✨. Muat turun aplikasi rasmi SifuTutor untuk Ibu Bapa di sini.">
+  <meta property="og:title" content="SifuTutor Parents Hub 👋 Official App & Resources">
+  <meta property="og:description" content="Manage classes, payments & learning progress with ease ✨. Muat turun aplikasi rasmi SifuTutor untuk Ibu Bapa di sini.">
+  <meta property="og:type" content="profile">
+  <meta property="og:url" content="https://linktr.ee/AppsForParents">
+  <meta property="og:image" content="https://sifututor-parentshub.netlify.app/app_launch_poster.jpg">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons for modern aesthetic -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Internal CSS for Single-File Self-Contained Portability -->
+  <style>
+    /* ==========================================================================
+       DESIGN SYSTEM & VARIABLES
+       ========================================================================== */
+    :root {
+      /* Brand Color Palette - Matching SifuTutor Official Colors */
+      --primary: #00aef0;          /* Bright Cyan Blue */
+      --primary-hover: #008ec4;
+      --secondary: #2a4ebf;        /* Royal Blue */
+      --accent: #ff4b13;           /* Brand Orange */
+      
+      --bg-dark: #00123c;          /* Deep Royal Navy (SifuTutor Brand Background) */
+      --text-main: #ffffff;        /* Pure White */
+      --text-muted: #9ab4f0;       /* Soft Indigo-Slate for readability */
+      
+      /* Glassmorphism Styles */
+      --glass-bg: rgba(7, 24, 73, 0.7); /* Deep blue frosted glass */
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --glass-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.45);
+      
+      /* Typography */
+      --font-title: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    /* ==========================================================================
+       RESET & BASE STYLES
+       ========================================================================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      overflow-x: hidden;
+      position: relative;
+      line-height: 1.5;
+      padding: 24px 16px 48px 16px;
+    }
+
+    /* ==========================================================================
+       PREMIUM SPLASH SCREEN LOADER
+       ========================================================================== */
+    #splash-screen {
+      position: fixed;
+      inset: 0;
+      background-color: var(--bg-dark);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.5s ease;
+    }
+
+    #splash-screen.fade-out {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .splash-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .splash-logo-container {
+      position: relative;
+      width: 100px;
+      height: 100px;
+    }
+
+    .splash-logo {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      animation: pulse-logo 1.8s infinite ease-in-out;
+    }
+
+    .splash-loader {
+      width: 50px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 3px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .splash-loader::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 50%;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      border-radius: 3px;
+      animation: loading-bar 1.5s infinite ease-in-out;
+    }
+
+    @keyframes pulse-logo {
+      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 0 rgba(0, 174, 240, 0)); }
+      50% { transform: scale(1.06); filter: drop-shadow(0 0 20px rgba(0, 174, 240, 0.5)); }
+    }
+
+    @keyframes loading-bar {
+      0% { left: -50%; }
+      100% { left: 100%; }
+    }
+
+    /* ==========================================================================
+       DYNAMIC BACKGROUND GLOWS (Aesthetics)
+       ========================================================================== */
+    .bg-glow {
+      position: fixed;
+      width: 350px;
+      height: 350px;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.18;
+      z-index: -1;
+      pointer-events: none;
+      animation: float-glow 20s infinite alternate ease-in-out;
+    }
+
+    .bg-glow-1 {
+      background-color: var(--primary);
+      top: -10%;
+      left: -15%;
+    }
+
+    .bg-glow-2 {
+      background-color: var(--accent);
+      bottom: -10%;
+      right: -15%;
+      animation-delay: -5s;
+    }
+
+    @keyframes float-glow {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(60px, 40px) scale(1.15); }
+      100% { transform: translate(-30px, 20px) scale(0.9); }
+    }
+
+    /* ==========================================================================
+       STAGGERED LOAD-IN ANIMATIONS
+       ========================================================================== */
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .fade-in-up.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.25s; }
+    .delay-3 { transition-delay: 0.4s; }
+    .delay-4 { transition-delay: 0.55s; }
+    .delay-5 { transition-delay: 0.7s; }
+
+    /* ==========================================================================
+       CONTAINER & LAYOUT
+       ========================================================================== */
+    .container {
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    /* ==========================================================================
+       TOP ACTION BAR (Language Switcher & Share)
+       ========================================================================== */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .lang-switcher {
+      display: flex;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 2px;
+      gap: 2px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 18px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .lang-btn.active {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #070a13;
+    }
+
+    .lang-btn:hover:not(.active) {
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .icon-btn {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      color: var(--text-main);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .icon-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .icon-btn:active {
+      transform: translateY(0);
+    }
+
+    /* ==========================================================================
+       HEADER SECTION
+       ========================================================================== */
+    .profile-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .avatar-container {
+      position: relative;
+      margin-bottom: 20px;
+      animation: logo-float 4s infinite alternate ease-in-out;
+    }
+
+    .avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 3px solid rgba(255, 255, 255, 0.15);
+      background: #ffffff;
+      padding: 8px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+      object-fit: contain;
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      animation: logo-glow 3s infinite ease-in-out;
+    }
+
+    .avatar-container::after {
+      content: '';
+      position: absolute;
+      inset: -5px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--accent), var(--secondary));
+      z-index: -1;
+      opacity: 0.8;
+      animation: rotate-gradient 6s infinite linear;
+    }
+
+    .avatar-container:hover .avatar {
+      transform: scale(1.08) rotate(5deg);
+    }
+
+    /* Avatar Animation Keyframes */
+    @keyframes logo-float {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-8px); }
+    }
+
+    @keyframes rotate-gradient {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes logo-glow {
+      0%, 100% { box-shadow: 0 0 12px rgba(0, 174, 240, 0.25), 0 12px 30px rgba(0, 0, 0, 0.35); }
+      50% { box-shadow: 0 0 28px rgba(0, 174, 240, 0.6), 0 12px 30px rgba(0, 0, 0, 0.35); }
+    }
+
+    .profile-title {
+      font-family: var(--font-title);
+      font-size: 1.75rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .wave {
+      animation: wave-animation 2.5s infinite;
+      transform-origin: 70% 70%;
+      display: inline-block;
+    }
+
+    @keyframes wave-animation {
+        0% { transform: rotate( 0.0deg) }
+       10% { transform: rotate(14.0deg) }
+       20% { transform: rotate(-8.0deg) }
+       30% { transform: rotate(14.0deg) }
+       40% { transform: rotate(-4.0deg) }
+       50% { transform: rotate(10.0deg) }
+       60% { transform: rotate( 0.0deg) }
+      100% { transform: rotate( 0.0deg) }
+    }
+
+    .profile-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      max-width: 345px;
+      line-height: 1.6;
+    }
+
+    /* ==========================================================================
+       SMART DOWNLOAD CARD WITH 3D TILT
+       ========================================================================== */
+    .download-section {
+      width: 100%;
+    }
+
+    .download-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: var(--glass-shadow);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      position: relative;
+      /* 3D Tilt perspective config */
+      transform-style: preserve-3d;
+      transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1);
+    }
+
+    /* Satisfying scale-down on active touch (mobile fallback) */
+    .download-card:active {
+      transform: scale(0.98);
+      transition: transform 0.15s ease;
+    }
+
+    .download-details {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transform: translateZ(25px); /* Lift element in 3D space */
+    }
+
+    .download-icon-wrapper {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, rgba(0, 174, 240, 0.15), rgba(42, 78, 191, 0.15));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+
+    .download-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .card-badge-inline {
+      align-self: flex-start;
+      background: rgba(255, 75, 19, 0.15); /* Brand orange background */
+      border: 1px solid rgba(255, 75, 19, 0.4);
+      color: #ff6a3c;                      /* Brand orange text */
+      font-size: 8px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+
+    .download-text h3 {
+      font-family: var(--font-title);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-main);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .download-text p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Premium Smart Button style */
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 16px 24px;
+      border-radius: 16px;
+      font-family: var(--font-title);
+      font-size: 1.05rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      transform: translateZ(35px); /* Lift button higher in 3D space */
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #ffffff;
+      box-shadow: 0 4px 20px rgba(0, 174, 240, 0.25);
+      border: none;
+      font-weight: 800;
+    }
+
+    .btn-primary:hover {
+      transform: translateZ(35px) translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 174, 240, 0.45);
+      filter: brightness(1.05);
+    }
+
+    .btn-primary:active {
+      transform: translateZ(35px) translateY(0);
+    }
+
+    /* Fallback Manual Link Section */
+    .fallback-links {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 18px;
+      transform: translateZ(15px);
+    }
+
+    .fallback-links p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      text-align: center;
+      letter-spacing: 0.01em;
+    }
+
+    .store-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .store-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 14px 10px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: all 0.25s ease;
+    }
+
+    .store-link i {
+      font-size: 1.3rem;
+    }
+
+    .store-link .small-text {
+      font-size: 0.7rem;
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+
+    .store-link:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.12);
+      transform: translateY(-2px);
+    }
+
+    .store-link:active {
+      transform: translateY(0);
+    }
+
+    /* Beautiful Highlight Ring for detected OS */
+    .store-link.highlight {
+      background: rgba(0, 174, 240, 0.06);
+      border-color: rgba(0, 174, 240, 0.35);
+      box-shadow: 0 0 15px rgba(0, 174, 240, 0.1);
+    }
+
+    /* ==========================================================================
+       VERIFICATION CARD
+       ========================================================================== */
+    .verify-section {
+      width: 100%;
+    }
+
+    .verify-card {
+      background: rgba(42, 78, 191, 0.15); /* Soft SifuTutor blue-purple background */
+      border: 1px solid rgba(42, 78, 191, 0.3);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: var(--glass-shadow);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .verify-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 14px;
+    }
+
+    .verify-badge-icon {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, rgba(0, 174, 240, 0.2), rgba(255, 75, 19, 0.2));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      color: var(--primary);
+    }
+
+    .verify-header h2 {
+      font-family: var(--font-title);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .verify-main-text {
+      font-size: 0.9rem;
+      font-weight: 600;
+      line-height: 1.5;
+      color: var(--text-main);
+    }
+
+    .verify-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .verify-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.82rem;
+      line-height: 1.5;
+      color: var(--text-muted);
+    }
+
+    .verify-list li i {
+      color: var(--primary); /* Cyan checkmarks */
+      font-size: 0.95rem;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .verify-footer {
+      font-family: var(--font-title);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    /* ==========================================================================
+       LINKS SECTION
+       ========================================================================== */
+    .links-section {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .section-title {
+      font-family: var(--font-title);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-left: 4px;
+      margin-bottom: 2px;
+    }
+
+    /* Link Cards */
+    .link-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 18px;
+      padding: 16px 20px;
+      color: var(--text-main);
+      text-decoration: none;
+      box-shadow: var(--glass-shadow);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .link-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      color: var(--text-main);
+      flex-shrink: 0;
+      transition: all 0.25s ease;
+    }
+
+    .link-info {
+      flex-grow: 1;
+      min-width: 0;
+    }
+
+    .link-info h3 {
+      font-family: var(--font-title);
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+
+    .link-info p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .arrow-icon {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      transition: transform 0.25s ease;
+    }
+
+    /* Card Hover States */
+    .link-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, 0.12);
+      background: rgba(17, 25, 40, 0.85);
+    }
+
+    .link-card:hover .link-icon {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .link-card:hover .arrow-icon {
+      transform: translateX(4px);
+      color: var(--text-main);
+    }
+
+    /* WhatsApp Card Specific Highlight */
+    .whatsapp-card {
+      border-color: rgba(37, 211, 102, 0.2);
+      background: rgba(37, 211, 102, 0.03);
+    }
+
+    .whatsapp-card .link-icon {
+      background: rgba(37, 211, 102, 0.08);
+      border-color: rgba(37, 211, 102, 0.15);
+      color: #25d366;
+    }
+
+    .whatsapp-card:hover {
+      border-color: rgba(37, 211, 102, 0.45);
+      background: rgba(37, 211, 102, 0.06);
+    }
+
+    .whatsapp-card:hover .link-icon {
+      background: #25d366;
+      color: #070a13;
+      border-color: transparent;
+    }
+
+    /* YouTube Card Specific Highlight */
+    .youtube-card {
+      border-color: rgba(239, 68, 68, 0.25);
+      background: rgba(239, 68, 68, 0.03);
+    }
+
+    .youtube-card .link-icon {
+      background: rgba(239, 68, 68, 0.08);
+      border-color: rgba(239, 68, 68, 0.15);
+      color: #ef4444;
+    }
+
+    .youtube-card:hover {
+      border-color: rgba(239, 68, 68, 0.45);
+      background: rgba(239, 68, 68, 0.06);
+    }
+
+    .youtube-card:hover .link-icon {
+      background: #ef4444;
+      color: #070a13;
+      border-color: transparent;
+    }
+
+    /* Testimony Card Specific Highlight */
+    .testimony-card {
+      border-color: rgba(245, 158, 11, 0.25);
+      background: rgba(245, 158, 11, 0.03);
+    }
+
+    .testimony-card .link-icon {
+      background: rgba(245, 158, 11, 0.08);
+      border-color: rgba(245, 158, 11, 0.15);
+      color: #f59e0b;
+    }
+
+    .testimony-card:hover {
+      border-color: rgba(245, 158, 11, 0.45);
+      background: rgba(245, 158, 11, 0.06);
+    }
+
+    .testimony-card:hover .link-icon {
+      background: #f59e0b;
+      color: #070a13;
+      border-color: transparent;
+    }
+
+    /* Guideline Card Specific Highlight (Indigo) */
+    .guide-card {
+      border-color: rgba(99, 102, 241, 0.25);
+      background: rgba(99, 102, 241, 0.03);
+    }
+
+    .guide-card .link-icon {
+      background: rgba(99, 102, 241, 0.08);
+      border-color: rgba(99, 102, 241, 0.15);
+      color: #818cf8; /* Soft Indigo */
+    }
+
+    .guide-card:hover {
+      border-color: rgba(99, 102, 241, 0.45);
+      background: rgba(99, 102, 241, 0.06);
+    }
+
+    .guide-card:hover .link-icon {
+      background: #818cf8;
+      color: #070a13;
+      border-color: transparent;
+    }
+
+    /* Website Card Specific Highlight (Cyan) */
+    .web-card {
+      border-color: rgba(0, 174, 240, 0.25);
+      background: rgba(0, 174, 240, 0.03);
+    }
+
+    .web-card .link-icon {
+      background: rgba(0, 174, 240, 0.08);
+      border-color: rgba(0, 174, 240, 0.15);
+      color: var(--primary); /* Cyan */
+    }
+
+    .web-card:hover {
+      border-color: rgba(0, 174, 240, 0.45);
+      background: rgba(0, 174, 240, 0.06);
+    }
+
+    .web-card:hover .link-icon {
+      background: var(--primary);
+      color: #070a13;
+      border-color: transparent;
+    }
+
+    /* ==========================================================================
+       SOCIALS & FOOTER
+       ========================================================================== */
+    .socials-footer {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 12px;
+    }
+
+    .social-icons a {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .social-icons a:hover {
+      transform: translateY(-4px);
+      color: var(--text-main);
+    }
+
+    /* Brand specific colors on hover */
+    .social-icons a[title="TikTok"]:hover {
+      background: #000000;
+      border-color: #ff0050;
+      box-shadow: 0 5px 15px rgba(255, 0, 80, 0.25);
+    }
+
+    .social-icons a[title="Instagram"]:hover {
+      background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+      border-color: transparent;
+      box-shadow: 0 5px 15px rgba(214, 36, 159, 0.25);
+      color: #fff;
+    }
+
+    .social-icons a[title="Facebook"]:hover {
+      background: #1877f2;
+      border-color: #1877f2;
+      box-shadow: 0 5px 15px rgba(24, 119, 242, 0.25);
+      color: #fff;
+    }
+
+    .social-icons a[title="YouTube"]:hover {
+      background: #ff0000;
+      border-color: #ff0000;
+      box-shadow: 0 5px 15px rgba(255, 0, 0, 0.25);
+      color: #fff;
+    }
+
+    .copyright {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    /* ==========================================================================
+       MEDIA QUERIES (RESPONSIVENESS)
+       ========================================================================== */
+    @media (max-width: 480px) {
+      body {
+        padding: 16px 12px 36px 12px;
+      }
+      
+      .container {
+        gap: 20px;
+      }
+
+      .profile-title {
+        font-size: 1.55rem;
+      }
+      
+      .download-card {
+        padding: 20px;
+        gap: 18px;
+        /* Disable 3D tilt transform on mobile to avoid layout jitters */
+        transform: none !important;
+      }
+      
+      .download-details {
+        gap: 12px;
+        transform: none !important;
+      }
+      
+      .download-icon-wrapper {
+        width: 46px;
+        height: 46px;
+        font-size: 1.25rem;
+        border-radius: 12px;
+      }
+
+      .download-text h3 {
+        font-size: 1.1rem;
+      }
+      
+      .btn {
+        padding: 14px 20px;
+        font-size: 1rem;
+        transform: none !important;
+      }
+      
+      .link-card {
+        padding: 14px 18px;
+        gap: 12px;
+      }
+
+      .link-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.15rem;
+        border-radius: 10px;
+      }
+
+      /* Mobile Verify Card overrides */
+      .verify-card {
+        padding: 20px;
+        gap: 14px;
+      }
+      .verify-header {
+        padding-bottom: 10px;
+        gap: 10px;
+      }
+      .verify-badge-icon {
+        width: 38px;
+        height: 38px;
+        font-size: 1.1rem;
+      }
+      .verify-header h2 {
+        font-size: 1.05rem;
+      }
+      .verify-main-text {
+        font-size: 0.85rem;
+      }
+      .verify-list li {
+        font-size: 0.78rem;
+        gap: 8px;
+      }
+
+      /* Mobile Promo Modal overrides */
+      .modal-content {
+        width: 85%;
+      }
+      .modal-close {
+        top: -42px;
+        width: 32px;
+        height: 32px;
+        font-size: 0.95rem;
+      }
+    }
+
+    /* ==========================================================================
+       INTERACTIVE PROMO MODAL (POPUP POSTER)
+       ========================================================================== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 8, 30, 0.85); /* Deep dark brand blue shade */
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999; /* Below splash screen (9999) but above everything else (99) */
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-content {
+      position: relative;
+      width: 90%;
+      max-width: 380px; /* Standard poster aspect ratio width */
+      background: transparent;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transform: scale(0.9) translateY(20px);
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .modal-overlay.active .modal-content {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: -48px;
+      right: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 1001;
+    }
+
+    .modal-close:hover {
+      background: var(--accent); /* Brand orange close highlight */
+      border-color: var(--accent);
+      transform: rotate(90deg);
+    }
+
+    .modal-body {
+      width: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 174, 240, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      background: #00123c;
+    }
+
+    .promo-poster {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Interactive Promo/Ad Poster Modal -->
+  <div id="promo-modal" class="modal-overlay">
+    <div class="modal-content">
+      <button id="modal-close-btn" class="modal-close" aria-label="Close Announcement">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="modal-body">
+        <!-- You can swap 'sifututor_promo_poster.jpg' with any online image link (e.g. https://yourwebsite.com/poster.jpg) -->
+        <img src="apps_verify.png" alt="SifuTutor Special Promotion" class="promo-poster">
+      </div>
+    </div>
+  </div>
+
+  <!-- Premium Splash Loader overlay -->
+  <div id="splash-screen">
+    <div class="splash-content">
+      <div class="splash-logo-container">
+        <img src="https://ugc.production.linktr.ee/2ae56e42-0043-4140-a7bf-6f96f276b4fc_LOGO-ONLY.png?io=true&size=avatar-v3_0" alt="SifuTutor Logo" class="splash-logo">
+      </div>
+      <div class="splash-loader"></div>
+    </div>
+  </div>
+
+  <!-- Dynamic Animated Background Gradients -->
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+  
+  <main class="container">
+    <!-- Top Action Bar (Language Switcher & Share) -->
+    <div class="top-bar fade-in-up delay-1">
+      <div class="lang-switcher">
+        <button id="lang-en-btn" class="lang-btn active" data-lang="en">EN</button>
+        <button id="lang-ms-btn" class="lang-btn" data-lang="ms">BM</button>
+      </div>
+      
+      <button id="copy-btn" class="icon-btn" title="Salin Pautan" aria-label="Copy Link">
+        <i class="fa-regular fa-share-from-square"></i> <span id="share-btn-text" data-translate="shareText">Kongsi</span>
+      </button>
+    </div>
+
+    <!-- Profile/Header Section -->
+    <header class="profile-header fade-in-up delay-2">
+      <div class="avatar-container">
+        <!-- Using high quality SifuTutor logo directly from official assets -->
+        <img class="avatar" src="https://ugc.production.linktr.ee/2ae56e42-0043-4140-a7bf-6f96f276b4fc_LOGO-ONLY.png?io=true&size=avatar-v3_0" alt="SifuTutor Logo">
+      </div>
+      <h1 class="profile-title">
+        <span data-translate="title">SifuTutor Parents Hub</span> <span class="wave">👋</span>
+      </h1>
+      <p class="profile-subtitle" data-translate="subtitle">Manage classes, payments & learning progress with ease ✨</p>
+    </header>
+
+    <!-- Main Smart Download Card -->
+    <section class="download-section fade-in-up delay-3">
+      <div id="smart-download-card" class="download-card">
+        
+        <div class="download-details">
+          <div class="download-icon-wrapper">
+            <i class="fa-solid fa-mobile-screen-button"></i>
+          </div>
+          <div class="download-text">
+            <div class="card-badge-inline" data-translate="officialDownload">Muat Turun Rasmi</div>
+            <h3 data-translate="smartTitle">Aplikasi SifuTutor (Ibu Bapa)</h3>
+            <p id="os-detect-msg">Mengesan peranti anda...</p>
+          </div>
+        </div>
+
+        <!-- The Universal Button that changes dynamically -->
+        <a id="smart-download-btn" href="#" class="btn btn-primary" target="_blank">
+          <i class="fa-solid fa-cloud-arrow-down"></i> <span id="btn-text">Muat Turun Sekarang</span>
+        </a>
+
+        <!-- Fallback/Alternative Section -->
+        <div class="fallback-links">
+          <p data-translate="fallbackText">Atau pilih mengikut jenis peranti anda secara manual:</p>
+          <div class="store-buttons">
+            <a href="https://apps.apple.com/my/app/sifututor-tutors-a-tap-away/id6615067210?l=ms" target="_blank" class="store-link ios" id="link-ios">
+              <i class="fa-brands fa-apple"></i> App Store <span class="small-text">(iOS / iPhone)</span>
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.sifuparent&pcampaignid=web_share" target="_blank" class="store-link android" id="link-android">
+              <i class="fa-brands fa-google-play"></i> Google Play <span class="small-text">(Android)</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Verification Guide Section -->
+    <section class="verify-section fade-in-up delay-4">
+      <div class="verify-card">
+        <div class="verify-header">
+          <div class="verify-badge-icon">
+            <i class="fa-solid fa-calendar-check"></i>
+          </div>
+          <h2 data-translate="verifyHeading">Verify This Month's Classes</h2>
+        </div>
+        
+        <p class="verify-main-text" data-translate="verifyMain">
+          Dear Customer, kindly verify all classes conducted this month in your app before the 1st of next month.
+        </p>
+        
+        <ul class="verify-list">
+          <li>
+            <i class="fa-solid fa-circle-check"></i>
+            <span data-translate="verifyItem1">After the first class is completed, kindly make the payment once you receive the monthly invoice.</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-circle-check"></i>
+            <span data-translate="verifyItem2">Payment is required before the class can be verified in the app.</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-circle-check"></i>
+            <span data-translate="verifyItem3">Tutor payment is dependent on the invoice payment status and class verification.</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-circle-check"></i>
+            <span data-translate="verifyItem4">Timely payment helps ensure smooth tutor payment processing and uninterrupted continuation of classes.</span>
+          </li>
+        </ul>
+        
+        <p class="verify-footer" data-translate="verifyThankYou">Thank you.</p>
+      </div>
+    </section>
+
+    <!-- Resource Links Section -->
+    <section class="links-section fade-in-up delay-5">
+      <h2 class="section-title" data-translate="sectionTitle">Pautan & Sokongan Rasmi</h2>
+      
+      <!-- Parent Guide Card -->
+      <a href="https://sifututor.my/v1/customer-guidelines-terms-conditions-3" target="_blank" class="link-card guide-card">
+        <div class="link-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+        <div class="link-info">
+          <h3 data-translate="guideTitle">Parents Guideline (Terma & Syarat)</h3>
+          <p data-translate="guideDesc">Panduan rasmi terma & syarat untuk ibu bapa</p>
+        </div>
+        <div class="arrow-icon"><i class="fa-solid fa-chevron-right"></i></div>
+      </a>
+
+      <!-- YouTube Tutorial Card -->
+      <a href="https://youtu.be/eXWqLj0SPCg?si=glMvzUnkimDx8V_6" target="_blank" class="link-card youtube-card">
+        <div class="link-icon"><i class="fa-brands fa-youtube"></i></div>
+        <div class="link-info">
+          <h3 data-translate="ytTitle">Cara Penggunaan Aplikasi</h3>
+          <p data-translate="ytDesc">Video panduan cara guna aplikasi SifuTutor</p>
+        </div>
+        <div class="arrow-icon"><i class="fa-solid fa-chevron-right"></i></div>
+      </a>
+
+      <!-- WhatsApp Support Card (Very clear call to action) -->
+      <a id="whatsapp-link" href="#" target="_blank" class="link-card whatsapp-card">
+        <div class="link-icon"><i class="fa-brands fa-whatsapp"></i></div>
+        <div class="link-info">
+          <h3 data-translate="waTitle">Hubungi Sokongan WhatsApp</h3>
+          <p data-translate="waDesc">Hubungi khidmat pelanggan untuk bantuan segera</p>
+        </div>
+        <div class="arrow-icon"><i class="fa-solid fa-chevron-right"></i></div>
+      </a>
+
+      <!-- YouTube Feedback Card -->
+      <a href="https://www.youtube.com/watch?v=X1tpYclmjRM" target="_blank" class="link-card testimony-card">
+        <div class="link-icon"><i class="fa-solid fa-ranking-star"></i></div>
+        <div class="link-info">
+          <h3 data-translate="feedbackTitle">Parents Testimony & Reviews</h3>
+          <p data-translate="feedbackDesc">Watch honest feedback from SifuTutor parents</p>
+        </div>
+        <div class="arrow-icon"><i class="fa-solid fa-chevron-right"></i></div>
+      </a>
+
+      <!-- Official Website Card -->
+      <a href="https://sifututor.my/" target="_blank" class="link-card web-card">
+        <div class="link-icon"><i class="fa-solid fa-globe"></i></div>
+        <div class="link-info">
+          <h3 data-translate="webTitle">Layari Laman Web Rasmi</h3>
+          <p data-translate="webDesc">Maklumat lanjut mengenai tusyen SifuTutor</p>
+        </div>
+        <div class="arrow-icon"><i class="fa-solid fa-chevron-right"></i></div>
+      </a>
+    </section>
+
+    <!-- Social Media Links Section -->
+    <footer class="socials-footer fade-in-up delay-5">
+      <div class="social-icons">
+        <a href="https://tiktok.com/@sifututor" target="_blank" title="TikTok" aria-label="TikTok">
+          <i class="fa-brands fa-tiktok"></i>
+        </a>
+        <a href="https://instagram.com/sifututor" target="_blank" title="Instagram" aria-label="Instagram">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="https://www.facebook.com/sifututor.my" target="_blank" title="Facebook" aria-label="Facebook">
+          <i class="fa-brands fa-facebook-f"></i>
+        </a>
+        <a href="https://www.youtube.com/@sifututor3585" target="_blank" title="YouTube" aria-label="YouTube">
+          <i class="fa-brands fa-youtube"></i>
+        </a>
+      </div>
+      <p class="copyright" data-translate="copyright">&copy; 2026 SifuTutor. Diuruskan oleh Sifu Edu & Learning Sdn Bhd.</p>
+    </footer>
+  </main>
+
+  <!-- Internal JavaScript (Dynamic language translation, OS detection, Premium Loader, and 3D Tilt) -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // --- Translation Lookup Data ---
+      const translations = {
+        ms: {
+          title: "SifuTutor Parents Hub",
+          subtitle: "Urus kelas, pembayaran & perkembangan pembelajaran dengan mudah ✨",
+          officialDownload: "Muat Turun Rasmi",
+          smartTitle: "Aplikasi SifuTutor (Ibu Bapa)",
+          osDetecting: "Mengesan peranti anda...",
+          btnAndroid: "Muat Turun di Google Play",
+          btnIos: "Muat Turun di App Store",
+          btnDefault: "Pilih Stor Aplikasi di Bawah",
+          osAndroid: "Dikesan untuk Android 🤖",
+          osIos: "Dikesan untuk iOS / iPhone 📱",
+          osDefault: "Sila pilih jenis peranti anda di bawah 👇",
+          fallbackText: "Atau pilih mengikut jenis peranti anda secara manual:",
+          sectionTitle: "Pautan & Sokongan Rasmi",
+          waTitle: "Hubungi Sokongan WhatsApp",
+          waDesc: "Hubungi khidmat pelanggan untuk bantuan segera",
+          ytTitle: "Cara Penggunaan Aplikasi",
+          ytDesc: "Video panduan cara guna aplikasi SifuTutor",
+          guideTitle: "Parents Guideline (Terma & Syarat)",
+          guideDesc: "Panduan rasmi terma & syarat untuk ibu bapa",
+          webTitle: "Layari Laman Web Rasmi",
+          webDesc: "Maklumat lanjut mengenai tusyen SifuTutor",
+          copyright: "© 2026 SifuTutor. Diuruskan oleh Sifu Edu & Learning Sdn Bhd.",
+          shareText: "Kongsi",
+          copiedText: "Disalin!",
+          verifyHeading: "Sahkan Kelas Bulan Ini",
+          verifyMain: "Pelanggan yang dihormati, sila sahkan semua kelas yang dijalankan pada bulan ini di dalam aplikasi sebelum 1 hb bulan hadapan.",
+          verifyItem1: "Setelah kelas pertama selesai, sila buat pembayaran sebaik sahaja anda menerima invois bulanan.",
+          verifyItem2: "Pembayaran diperlukan sebelum kelas boleh disahkan di dalam aplikasi.",
+          verifyItem3: "Bayaran kepada tutor bergantung pada status pembayaran invois dan pengesahan kelas.",
+          verifyItem4: "Pembayaran tepat pada masanya membantu melancarkan bayaran tutor dan kelangsungan kelas tanpa gangguan.",
+          verifyThankYou: "Terima kasih.",
+          feedbackTitle: "Testimoni & Maklum Balas",
+          feedbackDesc: "Tonton ulasan jujur daripada ibu bapa SifuTutor",
+          waTemplate: "Selamat datang ke *Helpdesk Customer.* \uD83D\uDE0A\n\nUntuk memudahkan kami membantu, mohon kongsikan:\n\n* *Nama Penuh:*\n* *Ringkasan isu atau pertanyaan:*\n\nJika berkaitan, sila sertakan *screenshot* bagi memudahkan proses semakan.\nTerima kasih atas kerjasama tuan/puan. \uD83C\uDF39"
+        },
+        en: {
+          title: "SifuTutor Parents Hub",
+          subtitle: "Manage classes, payments & learning progress with ease ✨",
+          officialDownload: "Official Download",
+          smartTitle: "SifuTutor App (Parents)",
+          osDetecting: "Detecting your device...",
+          btnAndroid: "Download on Google Play",
+          btnIos: "Download on the App Store",
+          btnDefault: "Choose App Store Below",
+          osAndroid: "Detected for Android 🤖",
+          osIos: "Detected for iOS / iPhone 📱",
+          osDefault: "Please choose your device type below 👇",
+          fallbackText: "Or choose your device type manually below:",
+          sectionTitle: "Official Links & Support",
+          waTitle: "Contact WhatsApp Support",
+          waDesc: "Contact customer support for immediate assistance",
+          ytTitle: "App Guide & Tutorial",
+          ytDesc: "Guide video on how to use SifuTutor app",
+          guideTitle: "Parents Guideline (T&C)",
+          guideDesc: "Official terms & conditions guide for parents",
+          webTitle: "Visit Official Website",
+          webDesc: "Find out more about SifuTutor tutoring services",
+          copyright: "© 2026 SifuTutor. Managed by Sifu Edu & Learning Sdn Bhd.",
+          shareText: "Share",
+          copiedText: "Copied!",
+          verifyHeading: "Verify This Month's Classes",
+          verifyMain: "Dear Customer, kindly verify all classes conducted this month in your app before the 1st of next month.",
+          verifyItem1: "After the first class is completed, kindly make the payment once you receive the monthly invoice.",
+          verifyItem2: "Payment is required before the class can be verified in the app.",
+          verifyItem3: "Tutor payment is dependent on the invoice payment status and class verification.",
+          verifyItem4: "Timely payment helps ensure smooth tutor payment processing and uninterrupted continuation of classes.",
+          verifyThankYou: "Thank you.",
+          feedbackTitle: "Parents Testimony & Reviews",
+          feedbackDesc: "Watch honest feedback from SifuTutor parents",
+          waTemplate: "Welcome to *Helpdesk Customer.* \uD83D\uDE0A\n\nTo help us assist you better, please share:\n\n* *Full Name:*\n* *Summary of issue or inquiry:*\n\nIf applicable, please include a *screenshot* to facilitate the review process.\nThank you for your cooperation. \uD83C\uDF39"
+        }
+      };
+
+      let currentLang = "en"; // Default language
+
+      // --- DOM Elements ---
+      const smartBtn = document.getElementById("smart-download-btn");
+      const osMsg = document.getElementById("os-detect-msg");
+      const linkIos = document.getElementById("link-ios");
+      const linkAndroid = document.getElementById("link-android");
+      const copyBtn = document.getElementById("copy-btn");
+      const msBtn = document.getElementById("lang-ms-btn");
+      const enBtn = document.getElementById("lang-en-btn");
+      const splashScreen = document.getElementById("splash-screen");
+      const card = document.getElementById("smart-download-card");
+      const waLink = document.getElementById("whatsapp-link");
+
+
+
+      // --- App Store Links ---
+      const IOS_URL = "https://apps.apple.com/my/app/sifututor-tutors-a-tap-away/id6615067210?l=ms";
+      const ANDROID_URL = "https://play.google.com/store/apps/details?id=com.sifuparent&pcampaignid=web_share";
+
+      // --- OS Detection Logic ---
+      function getMobileOS() {
+        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+          return "iOS";
+        }
+        if (/android/i.test(userAgent)) {
+          return "Android";
+        }
+        if (/Macintosh/i.test(userAgent) && navigator.maxTouchPoints > 1) {
+          return "iOS";
+        }
+        return "Unknown";
+      }
+
+      // --- Update OS Action elements based on Active Language ---
+      function updateOSButtons() {
+        const os = getMobileOS();
+        const dict = translations[currentLang];
+
+        if (os === "iOS") {
+          smartBtn.href = IOS_URL;
+          smartBtn.innerHTML = `<i class="fa-brands fa-apple"></i> <span>${dict.btnIos}</span>`;
+          osMsg.textContent = dict.osIos;
+          linkIos.classList.add("highlight");
+          linkAndroid.classList.remove("highlight");
+        } else if (os === "Android") {
+          smartBtn.href = ANDROID_URL;
+          smartBtn.innerHTML = `<i class="fa-brands fa-google-play"></i> <span>${dict.btnAndroid}</span>`;
+          osMsg.textContent = dict.osAndroid;
+          linkAndroid.classList.add("highlight");
+          linkIos.classList.remove("highlight");
+        } else {
+          smartBtn.href = "#smart-download-card"; 
+          smartBtn.style.cursor = "default";
+          smartBtn.innerHTML = `<i class="fa-solid fa-arrow-down"></i> <span>${dict.btnDefault}</span>`;
+          osMsg.textContent = dict.osDefault;
+          
+          smartBtn.addEventListener("click", function(e) {
+            e.preventDefault();
+            document.querySelector(".fallback-links").scrollIntoView({ behavior: 'smooth' });
+          });
+        }
+      }
+
+      // --- Translate Page Content ---
+      function translatePage(lang) {
+        currentLang = lang;
+        const dict = translations[lang];
+
+        document.querySelectorAll("[data-translate]").forEach(element => {
+          const key = element.getAttribute("data-translate");
+          if (dict[key]) {
+            element.textContent = dict[key];
+          }
+        });
+
+        updateOSButtons();
+
+        // Update WhatsApp link dynamically with translation template (direct API to avoid redirection encoding bugs)
+        if (waLink && dict.waTemplate) {
+          const waPhoneNumber = "60103170575";
+          waLink.href = `https://api.whatsapp.com/send?phone=${waPhoneNumber}&text=${encodeURIComponent(dict.waTemplate)}`;
+        }
+      }
+
+      // --- Language Switcher Listeners ---
+      msBtn.addEventListener("click", function () {
+        if (currentLang !== "ms") {
+          msBtn.classList.add("active");
+          enBtn.classList.remove("active");
+          translatePage("ms");
+        }
+      });
+
+      enBtn.addEventListener("click", function () {
+        if (currentLang !== "en") {
+          enBtn.classList.add("active");
+          msBtn.classList.remove("active");
+          translatePage("en");
+        }
+      });
+
+      // --- Copy/Share Link Logic ---
+      copyBtn.addEventListener("click", function () {
+        const pageUrl = window.location.href;
+        const dict = translations[currentLang];
+
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(pageUrl)
+            .then(() => showSuccessState(dict.copiedText))
+            .catch(err => fallbackCopy(pageUrl, dict.copiedText));
+        } else {
+          fallbackCopy(pageUrl, dict.copiedText);
+        }
+      });
+
+      function fallbackCopy(text, successMsg) {
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        try {
+          document.execCommand('copy');
+          showSuccessState(successMsg);
+        } catch (err) {
+          console.error('Gagal menyalin pautan: ', err);
+        }
+        document.body.removeChild(textArea);
+      }
+
+      function showSuccessState(successMsg) {
+        const shareTextSpan = document.getElementById("share-btn-text");
+        const origIcon = copyBtn.querySelector("i").className;
+        const origText = shareTextSpan.textContent;
+        
+        copyBtn.querySelector("i").className = "fa-solid fa-check";
+        copyBtn.querySelector("i").style.color = "var(--primary)";
+        shareTextSpan.textContent = successMsg;
+        copyBtn.style.borderColor = "var(--primary)";
+        
+        setTimeout(() => {
+          copyBtn.querySelector("i").className = origIcon;
+          copyBtn.querySelector("i").style.color = "";
+          shareTextSpan.textContent = origText;
+          copyBtn.style.borderColor = "var(--glass-border)";
+        }, 2000);
+      }
+
+      // --- Premium 3D Tilt Effect (Desktop Mouse Only) ---
+      function handleTilt(e) {
+        // Disable tilt on mobile touch devices
+        if (window.innerWidth <= 480) return;
+
+        const cardRect = card.getBoundingClientRect();
+        const cardWidth = cardRect.width;
+        const cardHeight = cardRect.height;
+        
+        const mouseX = e.clientX - cardRect.left - cardWidth / 2;
+        const mouseY = e.clientY - cardRect.top - cardHeight / 2;
+        
+        // Tilt depth calculation
+        const rotateX = -(mouseY / (cardHeight / 2)) * 6;
+        const rotateY = (mouseX / (cardWidth / 2)) * 6;
+        
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.015, 1.015, 1.015)`;
+        card.style.boxShadow = `0 20px 45px rgba(0, 0, 0, 0.45), 0 0 25px rgba(0, 174, 240, 0.12)`;
+      }
+
+      function resetTilt() {
+        card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+        card.style.boxShadow = `var(--glass-shadow)`;
+        card.style.transition = `transform 0.5s ease, box-shadow 0.5s ease`;
+      }
+
+      card.addEventListener("mousemove", handleTilt);
+      card.addEventListener("mouseleave", resetTilt);
+      card.addEventListener("mouseenter", function() {
+        card.style.transition = `none`; // Instant response during mousemove
+      });
+
+      // --- Promo Modal Logic ---
+      const promoModal = document.getElementById("promo-modal");
+      const modalCloseBtn = document.getElementById("modal-close-btn");
+
+      function showPromoModal() {
+        // Only show once per browser session
+        if (!sessionStorage.getItem("promoShown")) {
+          setTimeout(() => {
+            promoModal.classList.add("active");
+            sessionStorage.setItem("promoShown", "true");
+          }, 450); // Small visual delay after page slide-up
+        }
+      }
+
+      function closePromoModal() {
+        promoModal.classList.remove("active");
+      }
+
+      if (modalCloseBtn && promoModal) {
+        modalCloseBtn.addEventListener("click", closePromoModal);
+        
+        // Also close when clicking outside the content area
+        promoModal.addEventListener("click", function(e) {
+          if (e.target === promoModal) {
+            closePromoModal();
+          }
+        });
+      }
+
+      // --- Initialize and Trigger Entrance Animations ---
+      translatePage("en");
+
+      // Hide Splash screen after 1.2s and trigger staggered load-in
+      setTimeout(() => {
+        splashScreen.classList.add("fade-out");
+        
+        // Trigger staggered loading animations
+        setTimeout(() => {
+          document.querySelectorAll('.fade-in-up').forEach(el => {
+            el.classList.add('active');
+          });
+          
+          // Show promo modal after entrance animations
+          showPromoModal();
+        }, 150);
+      }, 1200);
+    });
+  </script>
+</body>
+</html>
