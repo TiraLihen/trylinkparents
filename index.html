@@ -567,7 +567,7 @@
       margin-top: 12px;
       border-radius: 12px;
       overflow: hidden;
-      display: none;
+      display: block; /* Always visible */
       aspect-ratio: 16/9;
       border: 1px solid rgba(7, 24, 73, 0.12);
       box-shadow: 0 8px 24px rgba(7, 24, 73, 0.06);
@@ -1110,15 +1110,9 @@
           </div>
         </div>
         <p class="step-desc" data-translate="s3Desc">Tonton video panduan pendek 1 minit untuk cara sahkan kelas anak anda (Verify Attendance) setiap bulan.</p>
-        
-        <button id="btn-video" class="step-action-btn btn-step3">
-          <i class="fa-solid fa-circle-play"></i> <span id="btn-video-txt" data-translate="s3Btn">Tonton Video Panduan</span>
-        </button>
-
         <div id="video-player-container" class="video-wrapper">
-          <iframe id="video-frame" src="" title="SifuTutor App Tutorial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe id="video-frame" src="https://www.youtube.com/embed/eXWqLj0SPCg" title="SifuTutor App Tutorial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-
       </div>
 
       <!-- SUCCESS / CELEBRATION BLOCK -->
@@ -1271,8 +1265,6 @@
       
       const btnAgreement = document.getElementById("btn-agreement");
       const btnDownload = document.getElementById("btn-download");
-      const btnVideo = document.getElementById("btn-video");
-      const btnVideoTxt = document.getElementById("btn-video-txt");
       
       const videoContainer = document.getElementById("video-player-container");
       const videoFrame = document.getElementById("video-frame");
@@ -1402,15 +1394,18 @@
         }
       });
 
-      // Step 2: Download click marks step 2 completed, unlocks step 3
+      // Step 2: Download click marks step 2 completed, auto-completes step 3
       btnDownload.addEventListener("click", function() {
         if (isStep1Done && !isStep2Done) {
           isStep2Done = true;
+          isStep3Done = true;
           updateStateUI();
-          // Scroll smoothly to Step 3
+          
+          // Reveal success onboarding block
           setTimeout(() => {
-            step3.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }, 600);
+            successBlock.style.display = "flex";
+            successBlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }, 1200);
         }
       });
 
@@ -1421,41 +1416,16 @@
       function completeStep2() {
         if (isStep1Done && !isStep2Done) {
           isStep2Done = true;
+          isStep3Done = true;
           updateStateUI();
+          
+          // Reveal success onboarding block
           setTimeout(() => {
-            step3.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }, 600);
+            successBlock.style.display = "flex";
+            successBlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }, 1200);
         }
       }
-
-      // Step 3: Video click displays the video player and triggers onboarding completion
-      btnVideo.addEventListener("click", function() {
-        if (isStep2Done) {
-          const dict = translations[currentLang];
-          if (videoContainer.style.display === "none" || !videoContainer.style.display) {
-            // Show video & start loading frame
-            videoContainer.style.display = "block";
-            videoFrame.src = YOUTUBE_VIDEO_URL;
-            btnVideoTxt.textContent = dict.s3BtnHide;
-            
-            // Mark step 3 done & reveal success onboarding block
-            if (!isStep3Done) {
-              isStep3Done = true;
-              updateStateUI();
-              
-              setTimeout(() => {
-                successBlock.style.display = "flex";
-                successBlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
-              }, 1200);
-            }
-          } else {
-            // Hide video
-            videoContainer.style.display = "none";
-            videoFrame.src = "";
-            btnVideoTxt.textContent = dict.s3Btn;
-          }
-        }
-      });
 
       // Lang buttons
       langMsBtn.addEventListener("click", () => {
