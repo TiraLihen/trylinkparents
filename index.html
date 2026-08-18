@@ -11,7 +11,7 @@
   <meta name="description" content="Portal onboarding langkah demi langkah untuk ibu bapa SifuTutor. Selesaikan pendaftaran kelas anak anda di sini.">
   <meta property="og:title" content="SifuTutor Onboarding - Langkah Demi Langkah">
   <meta property="og:description" content="Portal onboarding langkah demi langkah untuk ibu bapa SifuTutor. Selesaikan pendaftaran kelas anak anda di sini.">
-  <meta property="og:image" content="https://sifututor-parentshub.netlify.app/app_launch_poster.jpg">
+  <meta property="og:image" content="https://sifututor-parents.netlify.app/apps_verify.png">
   <meta property="og:type" content="website">
   
   <!-- Google Fonts -->
@@ -815,8 +815,8 @@
 
     .modal-content {
       position: relative;
-      width: 90%;
-      max-width: 380px; /* Standard poster aspect ratio width */
+      width: 95%;
+      max-width: 780px; /* Widened modal so landscape poster text is clearly readable */
       background: transparent;
       display: flex;
       flex-direction: column;
@@ -831,21 +831,21 @@
 
     .modal-close {
       position: absolute;
-      top: -48px;
-      right: 0;
+      top: 12px;
+      right: 12px;
       width: 36px;
       height: 36px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.9);
-      border: 1px solid rgba(12, 28, 63, 0.1);
-      color: #0c1c3f;
+      background: rgba(12, 28, 63, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #ffffff;
       font-size: 1.1rem;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       transition: all 0.25s ease;
-      box-shadow: 0 4px 15px rgba(12, 28, 63, 0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       z-index: 1001;
@@ -855,7 +855,7 @@
       background: var(--accent); /* Brand orange close highlight */
       border-color: var(--accent);
       color: #ffffff;
-      transform: rotate(90deg);
+      transform: scale(1.08) rotate(90deg);
     }
 
     .modal-body {
